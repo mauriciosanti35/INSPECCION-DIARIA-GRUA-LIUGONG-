@@ -21,12 +21,12 @@
         }
     </style>
 </head>
-<body class="bg-slate-100 min-h-screen py-6 px-2 sm:px-4 text-slate-800">
+<body class="bg-slate-100 min-h-screen py-4 px-2 text-slate-800">
 
-    <div class="max-w-7xl mx-auto bg-white rounded-xl shadow-xl border border-slate-200 p-4 sm:p-6">
+    <div class="max-w-[95rem] mx-auto bg-white rounded-xl shadow-xl border border-slate-200 p-4 sm:p-6">
         
         <!-- ENCABEZADO OFICIAL ACCESS -->
-        <div class="flex flex-col md:flex-row justify-between items-center border-b-2 border-slate-900 pb-4 mb-4 gap-4">
+        <div class="flex flex-col md:flex-row justify-between items-center border-b-2 border-slate-900 pb-3 mb-4 gap-4">
             <div class="w-full md:w-3/4">
                 <div class="flex items-center gap-3">
                     <span class="bg-blue-900 text-white text-xs font-black px-2.5 py-1 rounded tracking-wider uppercase">ACCESS</span>
@@ -35,7 +35,7 @@
                     </h1>
                 </div>
                 <p class="text-[10px] text-slate-500 font-medium mt-1 tracking-wide">
-                    COLOQUE EL FORMULARIO COMPLETO EN UNA CARPETA ACCESIBLE &nbsp;|&nbsp; POE: 1 / ed: 01
+                    COLOQUE EL FORMULARIO COMPLETO EN UNA CARPETA ACCESIBLE &nbsp;|&nbsp; POE: 1 / ed: 01 &nbsp;|&nbsp; Fecha de edición: 15/06/2026 &nbsp;|&nbsp; Fecha de revisión: 01/07/2026
                 </p>
             </div>
             <div class="w-full md:w-1/4 flex justify-start md:justify-end items-center">
@@ -48,30 +48,37 @@
         <form id="inspectionForm" onsubmit="return false;" class="space-y-4">
 
             <!-- DATOS GENERALES DEL EQUIPO (SEMANAL) -->
-            <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 text-xs grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+            <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 text-xs grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3">
                 <div>
                     <label class="block font-bold text-slate-600 mb-1">Semana del (Fecha Inicio):</label>
                     <input type="date" id="fechaSemana" class="w-full border border-slate-300 rounded px-2 py-1 font-bold text-slate-800">
                 </div>
                 <div>
                     <label class="block font-bold text-slate-600 mb-1">Turno:</label>
-                    <div class="flex items-center gap-3 py-1 font-bold">
+                    <div class="flex items-center gap-2 py-1 font-bold">
                         <label class="inline-flex items-center gap-1 cursor-pointer"><input type="radio" name="turno" value="Día" checked> Día</label>
                         <label class="inline-flex items-center gap-1 cursor-pointer"><input type="radio" name="turno" value="Tarde"> Tarde</label>
                         <label class="inline-flex items-center gap-1 cursor-pointer"><input type="radio" name="turno" value="Noche"> Noche</label>
                     </div>
                 </div>
                 <div>
-                    <label class="block font-bold text-slate-600 mb-1">Marca:</label>
-                    <input type="text" id="marca" value="LIUGONG" class="w-full border border-slate-300 rounded px-2 py-1 font-semibold text-slate-800">
+                    <label class="block font-bold text-slate-600 mb-1">Bodega / Instalación:</label>
+                    <input type="text" id="bodega" value="Bodega Banco Estado Barroso" class="w-full border border-slate-300 rounded px-2 py-1 font-semibold text-slate-800">
                 </div>
                 <div>
-                    <label class="block font-bold text-slate-600 mb-1">Modelo:</label>
-                    <input type="text" id="modelo" value="CLG2020A-S/E" class="w-full border border-slate-300 rounded px-2 py-1 font-semibold text-slate-800">
+                    <label class="block font-bold text-slate-600 mb-1">Marca / Modelo:</label>
+                    <input type="text" id="equipo" value="LIUGONG CLG2020A-S/E" class="w-full border border-slate-300 rounded px-2 py-1 font-semibold text-slate-800">
                 </div>
                 <div>
-                    <label class="block font-bold text-slate-600 mb-1">Nro. de Vehículo / Serie:</label>
+                    <label class="block font-bold text-slate-600 mb-1">Nro. de Serie (Vehículo):</label>
                     <input type="text" id="nroSerie" value="CLG2000ZVPT881792" class="w-full border border-slate-300 rounded px-2 py-1 font-mono font-bold text-blue-900">
+                </div>
+                <div>
+                    <label class="block font-bold text-slate-600 mb-1">Licencia al Día:</label>
+                    <div class="flex items-center gap-3 py-1 font-bold">
+                        <label class="inline-flex items-center gap-1 cursor-pointer"><input type="radio" name="licencia" value="SI" checked> SÍ</label>
+                        <label class="inline-flex items-center gap-1 cursor-pointer"><input type="radio" name="licencia" value="NO"> NO</label>
+                    </div>
                 </div>
             </div>
 
@@ -80,7 +87,7 @@
                 <table class="w-full text-[11px] text-left border-collapse">
                     <thead class="bg-slate-800 text-white uppercase font-bold text-center">
                         <tr>
-                            <th rowspan="2" class="p-2 border-r border-slate-700 text-left w-1/4">ÍTEM DE INSPECCIÓN DIARIA</th>
+                            <th rowspan="2" class="p-2 border-r border-slate-700 text-left w-[22%]">ÍTEM DE INSPECCIÓN DIARIA</th>
                             <th colspan="2" class="p-1 border-b border-r border-slate-700 bg-slate-700">Lunes</th>
                             <th colspan="2" class="p-1 border-b border-r border-slate-700 bg-slate-700">Martes</th>
                             <th colspan="2" class="p-1 border-b border-r border-slate-700 bg-slate-700">Miércoles</th>
@@ -88,22 +95,15 @@
                             <th colspan="2" class="p-1 border-b border-r border-slate-700 bg-slate-700">Viernes</th>
                             <th colspan="2" class="p-1 border-b border-r border-slate-700 bg-slate-700">Sábado</th>
                             <th colspan="2" class="p-1 border-b border-r border-slate-700 bg-slate-700">Domingo</th>
-                            <th rowspan="2" class="p-2 border-r border-slate-700 w-24">Observación / Condición</th>
+                            <th rowspan="2" class="p-2 border-r border-slate-700 w-[18%]">Observación / Condición</th>
                         </tr>
                         <tr>
-                            <!-- Lunes -->
                             <th class="p-1 border-r border-slate-700 w-6">AM</th><th class="p-1 border-r border-slate-700 w-6">PM</th>
-                            <!-- Martes -->
                             <th class="p-1 border-r border-slate-700 w-6">AM</th><th class="p-1 border-r border-slate-700 w-6">PM</th>
-                            <!-- Miércoles -->
                             <th class="p-1 border-r border-slate-700 w-6">AM</th><th class="p-1 border-r border-slate-700 w-6">PM</th>
-                            <!-- Jueves -->
                             <th class="p-1 border-r border-slate-700 w-6">AM</th><th class="p-1 border-r border-slate-700 w-6">PM</th>
-                            <!-- Viernes -->
                             <th class="p-1 border-r border-slate-700 w-6">AM</th><th class="p-1 border-r border-slate-700 w-6">PM</th>
-                            <!-- Sábado -->
                             <th class="p-1 border-r border-slate-700 w-6">AM</th><th class="p-1 border-r border-slate-700 w-6">PM</th>
-                            <!-- Domingo -->
                             <th class="p-1 border-r border-slate-700 w-6">AM</th><th class="p-1 border-r border-slate-700 w-6">PM</th>
                         </tr>
                     </thead>
@@ -116,20 +116,20 @@
             <!-- FIRMAS Y RESPONSABLES -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
                 <div class="bg-slate-50 border border-slate-300 rounded-lg p-3 text-xs space-y-2">
-                    <label class="block font-bold text-slate-700 uppercase">Firma del Operador:</label>
-                    <div class="border-b border-slate-400 h-10 flex items-end pb-1 font-signature text-xl text-blue-950" id="sigOp">Danilo Avilés</div>
-                    <input type="text" id="operador" value="Danilo Avilés" class="w-full bg-transparent font-bold outline-none text-slate-800" oninput="document.getElementById('sigOp').innerText = this.value">
+                    <label class="block font-bold text-slate-700 uppercase">Firma del Operador de Grúa:</label>
+                    <div class="border-b border-slate-400 h-12 flex items-end pb-1 font-signature text-2xl text-blue-950" id="sigOp">Danilo Avilés</div>
+                    <input type="text" id="operador" value="Danilo Avilés" class="w-full bg-transparent font-bold outline-none text-slate-800 text-xs uppercase" oninput="document.getElementById('sigOp').innerText = this.value">
                 </div>
                 <div class="bg-slate-50 border border-slate-300 rounded-lg p-3 text-xs space-y-2">
-                    <label class="block font-bold text-slate-700 uppercase">V°B° Supervisor / Firma:</label>
-                    <div class="border-b border-slate-400 h-10 flex items-end pb-1 font-signature text-xl text-blue-950" id="sigSup">Mauricio Santibañez</div>
-                    <input type="text" id="supervisor" value="Mauricio Santibañez" class="w-full bg-transparent font-bold outline-none text-slate-800" oninput="document.getElementById('sigSup').innerText = this.value">
+                    <label class="block font-bold text-slate-700 uppercase">V°B° Supervisor / Firma de Seguridad:</label>
+                    <div class="border-b border-slate-400 h-12 flex items-end pb-1 font-signature text-2xl text-blue-950" id="sigSup">Mauricio Santibañez</div>
+                    <input type="text" id="supervisor" value="Mauricio Santibañez" class="w-full bg-transparent font-bold outline-none text-slate-800 text-xs uppercase" oninput="document.getElementById('sigSup').innerText = this.value">
                 </div>
             </div>
 
             <!-- BOTONES -->
             <div class="pt-2 flex flex-col sm:flex-row gap-4 no-print">
-                <button type="button" onclick="generatePDF()" class="w-full bg-blue-900 hover:bg-black text-white font-bold py-3 px-4 rounded-lg transition tracking-widest uppercase shadow-lg text-xs flex items-center justify-center gap-2">
+                <button type="button" onclick="generatePDF()" class="w-full bg-blue-900 hover:bg-black text-white font-bold py-3.5 px-4 rounded-lg transition tracking-widest uppercase shadow-lg text-xs flex items-center justify-center gap-2">
                     Generar e Imprimir Reporte PDF Semanal
                 </button>
             </div>
@@ -165,50 +165,58 @@
 
             const tbody = document.getElementById('weekly_body');
             tbody.innerHTML = checkItems.map((item, idx) => {
-                let rowHtml = `<tr class="hover:bg-slate-50"><td class="p-1.5 border-r border-slate-300 font-semibold">${item}</td>`;
-                // 7 days * 2 (AM, PM) = 14 checkboxes
+                let rowHtml = `<tr class="hover:bg-slate-50"><td class="p-1.5 border-r border-slate-300 font-semibold text-slate-800">${item}</td>`;
                 for(let d=0; d<7; d++) {
                     rowHtml += `
                         <td class="p-0.5 border-r border-slate-200 text-center"><input type="checkbox" id="i_${idx}_d${d}_am" class="w-3.5 h-3.5 text-blue-900 rounded cursor-pointer"></td>
                         <td class="p-0.5 border-r border-slate-300 text-center"><input type="checkbox" id="i_${idx}_d${d}_pm" class="w-3.5 h-3.5 text-blue-900 rounded cursor-pointer"></td>
                     `;
                 }
-                rowHtml += `<td class="p-1"><input type="text" id="i_${idx}_obs" placeholder="Obs..." class="w-full px-1 text-[10px] border border-transparent focus:border-slate-300 rounded outline-none"></td></tr>`;
+                rowHtml += `<td class="p-1"><input type="text" id="i_${idx}_obs" placeholder="Observación..." class="w-full px-1.5 py-1 text-[11px] border border-transparent focus:border-slate-300 rounded outline-none bg-transparent focus:bg-white"></td></tr>`;
                 return rowHtml;
             }).join('');
         });
 
         async function generatePDF() {
             const { jsPDF } = window.jspdf;
-            const doc = new jsPDF('l', 'mm', 'a4'); // Landscape format for 7-day weekly checklist
+            const doc = new jsPDF('l', 'mm', 'a4'); // Formato horizontal (landscape)
 
             const semana = document.getElementById('fechaSemana').value;
             const turno = document.querySelector('input[name="turno"]:checked').value;
-            const marca = document.getElementById('marca').value;
-            const modelo = document.getElementById('modelo').value;
+            const bodega = document.getElementById('bodega').value;
+            const equipo = document.getElementById('equipo').value;
             const nroSerie = document.getElementById('nroSerie').value;
+            const licencia = document.querySelector('input[name="licencia"]:checked').value;
             const operador = document.getElementById('operador').value;
             const supervisor = document.getElementById('supervisor').value;
 
+            // Franja superior
             doc.setFillColor(30, 58, 138);
             doc.rect(14, 10, 269, 3, 'F');
 
             doc.setFont("helvetica", "bold");
             doc.setFontSize(10);
             doc.setTextColor(15, 23, 42);
-            doc.text("LISTA DE VERIFICACIÓN PARA LA INSPECCIÓN DIARIA – APILADOR ELÉCTRICO LIUGONG (SEMANAL)", 14, 17);
+            doc.text("LISTAS DE VERIFICACIÓN PARA LA INSPECCIÓN DIARIA – APILADOR ELÉCTRICO LIUGONG", 14, 17);
 
+            doc.setFontSize(7);
+            doc.setFont("helvetica", "normal");
+            doc.setTextColor(100, 116, 139);
+            doc.text("POE: 1 / ed: 01  |  Fecha de edición: 15/06/2026  |  Fecha de revisión: 01/07/2026", 14, 21);
+
+            // Datos generales en tabla limpia
             doc.autoTable({
-                startY: 20,
+                startY: 23,
                 theme: 'plain',
                 styles: { fontSize: 7, cellPadding: 1, textColor: [30, 41, 59] },
+                columnStyles: { 0: { fontStyle: 'bold' }, 2: { fontStyle: 'bold' }, 4: { fontStyle: 'bold' } },
                 body: [
-                    [`Semana del: ${semana}`, `Turno: ${turno}`, `Marca: ${marca}`, `Modelo: ${modelo}`, `N° Serie: ${nroSerie}`]
+                    [`Semana del: ${semana}`, `Turno: ${turno}`, `Bodega: ${bodega}`, `Equipo: ${equipo}`, `N° Serie: ${nroSerie}`, `Licencia: ${licencia}`]
                 ]
             });
 
             const days = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
-            const headRow1 = [{ content: 'ÍTEM', rowSpan: 2, styles: { halign: 'left', valign: 'middle' } }];
+            const headRow1 = [{ content: 'ÍTEM DE INSPECCIÓN DIARIA', rowSpan: 2, styles: { halign: 'left', valign: 'middle' } }];
             const headRow2 = [];
 
             days.forEach(day => {
@@ -233,20 +241,19 @@
                 theme: 'grid',
                 head: [headRow1, headRow2],
                 body: tableRows,
-                styles: { fontSize: 6, cellPadding: 0.8, textColor: [15, 23, 42] },
+                styles: { fontSize: 6, cellPadding: 0.9, textColor: [15, 23, 42] },
                 headStyles: { fillColor: [30, 41, 59], textColor: [255, 255, 255] }
             });
 
             doc.autoTable({
                 startY: doc.lastAutoTable.finalY + 4,
                 theme: 'grid',
-                styles: { fontSize: 7, cellPadding: 4, halign: 'center' },
-                head: [['Firma Operador', 'V°B° Supervisor']],
+                styles: { fontSize: 7, cellPadding: 5, halign: 'center' },
+                headStyles: { fillColor: [241, 245, 249], textColor: [30, 41, 59] },
+                head: [['Firma Operador de Grúa', 'V°B° Supervisor / Seguridad']],
                 body: [[
-                    `___________________________________
-${operador}`,
-                    `___________________________________
-${supervisor}`
+                    `\n\n___________________________________\n${operador}\nFirma Operador`,
+                    `\n\n___________________________________\n${supervisor}\nV°B° Supervisor`
                 ]]
             });
 
