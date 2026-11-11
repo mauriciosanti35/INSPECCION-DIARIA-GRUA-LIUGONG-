@@ -1,3 +1,7 @@
+
+
+Icono de HTML
+checklist_liugong
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -32,11 +36,11 @@
                 <div class="flex items-center gap-3">
                     <span class="bg-blue-900 text-white text-xs font-black px-2.5 py-1 rounded tracking-wider uppercase">ACCESS</span>
                     <h1 class="text-lg sm:text-xl font-bold uppercase text-slate-900 tracking-tight leading-tight">
-                        INSPECCIÓN DIARIA DE SEGURIDAD – APILADOR ELÉCTRICO LIUGONG
+                        LISTAS DE VERIFICACIÓN PARA LA INSPECCIÓN DIARIA – APILADOR ELÉCTRICO LIUGONG
                     </h1>
                 </div>
                 <p class="text-[11px] text-slate-500 font-medium mt-1 tracking-wide">
-                    POE: 1 / ed: 01  |  Fecha de edición: 15/06/2026  |  Fecha de revisión: 01/07/2026
+                    POE: 1 / ed: 01 &nbsp;|&nbsp; Fecha de edición: 15/06/2026 &nbsp;|&nbsp; Fecha de revisión: 01/07/2026
                 </p>
             </div>
             <div class="w-full md:w-1/4 flex justify-start md:justify-end items-center">
@@ -44,7 +48,7 @@
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRF48GAfBiNyZh2fPJF-l8q0Dk1Dqn5tQ2r4g&s" 
                          alt="Logo Access" 
                          class="max-h-full max-w-full object-contain"
-                         onerror="this.onerror=null; this.parentElement.innerHTML='<span class=\'font-black text-blue-900 text-lg tracking-widest\'>ACCESS</span>';">
+                         onerror="this.onerror=null; this.parentElement.innerHTML='<span class='font-black text-blue-900 text-lg tracking-widest'>ACCESS</span>';">
                 </div>
             </div>
         </div>
@@ -65,8 +69,12 @@
                         <input type="date" id="fecha" class="w-full border border-slate-300 rounded px-2.5 py-1.5 font-bold text-slate-800 focus:ring-2 focus:ring-blue-800 outline-none">
                     </div>
                     <div>
-                        <label class="block font-bold text-slate-600 mb-1">Marca / Modelo:</label>
-                        <input type="text" id="equipo" value="LIUGONG - CLG2020A-S/E" class="w-full border border-slate-300 rounded px-2.5 py-1.5 font-semibold text-slate-800 focus:ring-2 focus:ring-blue-800 outline-none">
+                        <label class="block font-bold text-slate-600 mb-1">Marca:</label>
+                        <input type="text" id="marca" value="LIUGONG" class="w-full border border-slate-300 rounded px-2.5 py-1.5 font-semibold text-slate-800 focus:ring-2 focus:ring-blue-800 outline-none">
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-600 mb-1">Modelo:</label>
+                        <input type="text" id="modelo" value="CLG2020A-S/E" class="w-full border border-slate-300 rounded px-2.5 py-1.5 font-semibold text-slate-800 focus:ring-2 focus:ring-blue-800 outline-none">
                     </div>
                     <div>
                         <label class="block font-bold text-slate-600 mb-1">Número de Serie:</label>
@@ -87,7 +95,7 @@
                             </label>
                         </div>
                     </div>
-                    <div class="sm:col-span-2 lg:col-span-3">
+                    <div class="sm:col-span-2">
                         <label class="block font-bold text-slate-600 mb-1">Supervisor a Cargo (V°B°):</label>
                         <input type="text" id="supervisor" value="Mauricio Santibañez" class="w-full border border-slate-300 rounded px-2.5 py-1.5 font-semibold text-slate-800 focus:ring-2 focus:ring-blue-800 outline-none" oninput="updateSignatures()">
                     </div>
@@ -385,7 +393,8 @@
         function resetFormToSample() {
             document.getElementById('bodega').value = "Bodega Banco Estado Barroso";
             document.getElementById('fecha').value = new Date().toISOString().split('T')[0];
-            document.getElementById('equipo').value = "LIUGONG - CLG2020A-S/E";
+            document.getElementById('marca').value = "LIUGONG";
+            document.getElementById('modelo').value = "CLG2020A-S/E";
             document.getElementById('nroSerie').value = "CLG2000ZVPT881792";
             document.getElementById('operador').value = "Danilo Avilés";
             document.getElementById('horometroEntrada').value = "4092";
@@ -419,7 +428,8 @@
 
             const bodega = document.getElementById('bodega').value || 'N/A';
             const fecha = document.getElementById('fecha').value || 'N/A';
-            const equipo = document.getElementById('equipo').value || 'N/A';
+            const marca = document.getElementById('marca').value || 'N/A';
+            const modelo = document.getElementById('modelo').value || 'N/A';
             const nroSerie = document.getElementById('nroSerie').value || 'N/A';
             const operador = document.getElementById('operador').value || 'N/A';
             const supervisor = document.getElementById('supervisor').value || 'N/A';
@@ -435,7 +445,7 @@
             doc.setFont("helvetica", "bold");
             doc.setFontSize(11);
             doc.setTextColor(15, 23, 42);
-            doc.text("INSPECCIÓN DIARIA DE SEGURIDAD – APILADOR ELÉCTRICO LIUGONG", 14, 18);
+            doc.text("LISTAS DE VERIFICACIÓN PARA LA INSPECCIÓN DIARIA – APILADOR ELÉCTRICO", 14, 18);
 
             doc.setFontSize(8);
             doc.setFont("helvetica", "normal");
@@ -467,10 +477,10 @@
                 },
                 body: [
                     ['Bodega / Instalación:', bodega, 'Fecha:', fecha],
-                    ['Marca / Modelo:', equipo, 'Nro. de Serie:', nroSerie],
-                    ['Apilador conducido por:', operador, 'Horómetro Entrada / Salida:', `${horoEnt} / ${horoSal}`],
-                    ['Hora Entrada / Salida:', `${horaEnt} - ${horaSal}`, 'Licencia al día:', licencia],
-                    ['Supervisor Responsable:', supervisor, '', '']
+                    ['Marca:', marca, 'Modelo:', modelo],
+                    ['Número de Serie:', nroSerie, 'Licencia al día:', licencia],
+                    ['Apilador conducido por:', operador, 'Horómetro (Entrada / Salida):', `${horoEnt} / ${horoSal}`],
+                    ['Hora (Entrada / Salida):', `${horaEnt} - ${horaSal}`, 'Supervisor Responsable:', supervisor]
                 ]
             });
 
@@ -641,3 +651,4 @@
     </script>
 </body>
 </html>
+Analizando
