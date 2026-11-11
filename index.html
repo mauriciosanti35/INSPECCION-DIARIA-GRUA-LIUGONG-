@@ -1,264 +1,236 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Verificación Inspección Diaria (Semanal) - Access</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- jsPDF & AutoTable -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-        .font-signature { font-family: 'Dancing Script', cursive; }
-        @media print {
-            .no-print { display: none !important; }
-            body { background: white !important; padding: 0 !important; }
-            .shadow-xl { box-shadow: none !important; border: none !important; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lista de verificación para la inspección diaria – GRÚA ELÉCTRICA LIUGONG</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  body{font-family:'Inter',sans-serif}
+  .st{appearance:none;-webkit-appearance:none;width:100%;text-align:center;font-weight:700;font-size:11px;padding:4px 0;border-radius:4px;border:1px solid #cbd5e1;background:#fff;cursor:pointer}
+  .st.ok{background:#d1fae5;color:#065f46;border-color:#10b981}
+  .st.rep{background:#ffe4e6;color:#9f1239;border-color:#e11d48}
+  .st.na{background:#e2e8f0;color:#475569}
+</style>
 </head>
-<body class="bg-slate-100 min-h-screen py-4 px-2 text-slate-800">
+<body class="bg-slate-100 min-h-screen py-6 px-2 sm:px-4 text-slate-800">
+<div class="max-w-6xl mx-auto bg-white rounded-xl shadow-xl border border-slate-200 p-4 sm:p-8">
 
-    <div class="max-w-[95rem] mx-auto bg-white rounded-xl shadow-xl border border-slate-200 p-4 sm:p-6">
-        
-        <!-- ENCABEZADO OFICIAL ACCESS -->
-        <div class="flex flex-col md:flex-row justify-between items-center border-b-2 border-slate-900 pb-3 mb-4 gap-4">
-            <div class="w-full md:w-3/4">
-                <div class="flex items-center gap-3">
-                    <span class="bg-blue-900 text-white text-xs font-black px-2.5 py-1 rounded tracking-wider uppercase">ACCESS</span>
-                    <h1 class="text-sm sm:text-base font-black uppercase text-slate-900 tracking-tight leading-tight">
-                        LISTAS DE VERIFICACIÓN PARA LA INSPECCIÓN DIARIA – MOTO / APILADORES ELÉCTRICOS ELP
-                    </h1>
-                </div>
-                <p class="text-[10px] text-slate-500 font-medium mt-1 tracking-wide">
-                    COLOQUE EL FORMULARIO COMPLETO EN UNA CARPETA ACCESIBLE &nbsp;|&nbsp; POE: 1 / ed: 01 &nbsp;|&nbsp; Fecha de edición: 15/06/2026 &nbsp;|&nbsp; Fecha de revisión: 01/07/2026
-                </p>
-            </div>
-            <div class="w-full md:w-1/4 flex justify-start md:justify-end items-center">
-                <div class="h-12 w-32 bg-slate-50 border border-slate-200 rounded flex items-center justify-center p-1.5 shadow-inner">
-                    <span class="font-black text-blue-900 text-base tracking-widest">ACCESS</span>
-                </div>
-            </div>
-        </div>
-
-        <form id="inspectionForm" onsubmit="return false;" class="space-y-4">
-
-            <!-- DATOS GENERALES DEL EQUIPO (SEMANAL) -->
-            <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 text-xs grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3">
-                <div>
-                    <label class="block font-bold text-slate-600 mb-1">Semana del (Fecha Inicio):</label>
-                    <input type="date" id="fechaSemana" class="w-full border border-slate-300 rounded px-2 py-1 font-bold text-slate-800">
-                </div>
-                <div>
-                    <label class="block font-bold text-slate-600 mb-1">Turno:</label>
-                    <div class="flex items-center gap-2 py-1 font-bold">
-                        <label class="inline-flex items-center gap-1 cursor-pointer"><input type="radio" name="turno" value="Día" checked> Día</label>
-                        <label class="inline-flex items-center gap-1 cursor-pointer"><input type="radio" name="turno" value="Tarde"> Tarde</label>
-                        <label class="inline-flex items-center gap-1 cursor-pointer"><input type="radio" name="turno" value="Noche"> Noche</label>
-                    </div>
-                </div>
-                <div>
-                    <label class="block font-bold text-slate-600 mb-1">Bodega / Instalación:</label>
-                    <input type="text" id="bodega" value="Bodega Banco Estado Barroso" class="w-full border border-slate-300 rounded px-2 py-1 font-semibold text-slate-800">
-                </div>
-                <div>
-                    <label class="block font-bold text-slate-600 mb-1">Marca / Modelo:</label>
-                    <input type="text" id="equipo" value="LIUGONG CLG2020A-S/E" class="w-full border border-slate-300 rounded px-2 py-1 font-semibold text-slate-800">
-                </div>
-                <div>
-                    <label class="block font-bold text-slate-600 mb-1">Nro. de Serie (Vehículo):</label>
-                    <input type="text" id="nroSerie" value="CLG2000ZVPT881792" class="w-full border border-slate-300 rounded px-2 py-1 font-mono font-bold text-blue-900">
-                </div>
-                <div>
-                    <label class="block font-bold text-slate-600 mb-1">Licencia al Día:</label>
-                    <div class="flex items-center gap-3 py-1 font-bold">
-                        <label class="inline-flex items-center gap-1 cursor-pointer"><input type="radio" name="licencia" value="SI" checked> SÍ</label>
-                        <label class="inline-flex items-center gap-1 cursor-pointer"><input type="radio" name="licencia" value="NO"> NO</label>
-                    </div>
-                </div>
-            </div>
-
-            <!-- TABLA PRINCIPAL SEMANAL -->
-            <div class="overflow-x-auto rounded-lg border border-slate-900 shadow-sm">
-                <table class="w-full text-[11px] text-left border-collapse">
-                    <thead class="bg-slate-800 text-white uppercase font-bold text-center">
-                        <tr>
-                            <th rowspan="2" class="p-2 border-r border-slate-700 text-left w-[22%]">ÍTEM DE INSPECCIÓN DIARIA</th>
-                            <th colspan="2" class="p-1 border-b border-r border-slate-700 bg-slate-700">Lunes</th>
-                            <th colspan="2" class="p-1 border-b border-r border-slate-700 bg-slate-700">Martes</th>
-                            <th colspan="2" class="p-1 border-b border-r border-slate-700 bg-slate-700">Miércoles</th>
-                            <th colspan="2" class="p-1 border-b border-r border-slate-700 bg-slate-700">Jueves</th>
-                            <th colspan="2" class="p-1 border-b border-r border-slate-700 bg-slate-700">Viernes</th>
-                            <th colspan="2" class="p-1 border-b border-r border-slate-700 bg-slate-700">Sábado</th>
-                            <th colspan="2" class="p-1 border-b border-r border-slate-700 bg-slate-700">Domingo</th>
-                            <th rowspan="2" class="p-2 border-r border-slate-700 w-[18%]">Observación / Condición</th>
-                        </tr>
-                        <tr>
-                            <th class="p-1 border-r border-slate-700 w-6">AM</th><th class="p-1 border-r border-slate-700 w-6">PM</th>
-                            <th class="p-1 border-r border-slate-700 w-6">AM</th><th class="p-1 border-r border-slate-700 w-6">PM</th>
-                            <th class="p-1 border-r border-slate-700 w-6">AM</th><th class="p-1 border-r border-slate-700 w-6">PM</th>
-                            <th class="p-1 border-r border-slate-700 w-6">AM</th><th class="p-1 border-r border-slate-700 w-6">PM</th>
-                            <th class="p-1 border-r border-slate-700 w-6">AM</th><th class="p-1 border-r border-slate-700 w-6">PM</th>
-                            <th class="p-1 border-r border-slate-700 w-6">AM</th><th class="p-1 border-r border-slate-700 w-6">PM</th>
-                            <th class="p-1 border-r border-slate-700 w-6">AM</th><th class="p-1 border-r border-slate-700 w-6">PM</th>
-                        </tr>
-                    </thead>
-                    <tbody id="weekly_body" class="divide-y divide-slate-300 bg-white font-medium">
-                        <!-- Generado por JS -->
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- FIRMAS Y RESPONSABLES -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
-                <div class="bg-slate-50 border border-slate-300 rounded-lg p-3 text-xs space-y-2">
-                    <label class="block font-bold text-slate-700 uppercase">Firma del Operador de Grúa:</label>
-                    <div class="border-b border-slate-400 h-12 flex items-end pb-1 font-signature text-2xl text-blue-950" id="sigOp">Danilo Avilés</div>
-                    <input type="text" id="operador" value="Danilo Avilés" class="w-full bg-transparent font-bold outline-none text-slate-800 text-xs uppercase" oninput="document.getElementById('sigOp').innerText = this.value">
-                </div>
-                <div class="bg-slate-50 border border-slate-300 rounded-lg p-3 text-xs space-y-2">
-                    <label class="block font-bold text-slate-700 uppercase">V°B° Supervisor / Firma de Seguridad:</label>
-                    <div class="border-b border-slate-400 h-12 flex items-end pb-1 font-signature text-2xl text-blue-950" id="sigSup">Mauricio Santibañez</div>
-                    <input type="text" id="supervisor" value="Mauricio Santibañez" class="w-full bg-transparent font-bold outline-none text-slate-800 text-xs uppercase" oninput="document.getElementById('sigSup').innerText = this.value">
-                </div>
-            </div>
-
-            <!-- BOTONES -->
-            <div class="pt-2 flex flex-col sm:flex-row gap-4 no-print">
-                <button type="button" onclick="generatePDF()" class="w-full bg-blue-900 hover:bg-black text-white font-bold py-3.5 px-4 rounded-lg transition tracking-widest uppercase shadow-lg text-xs flex items-center justify-center gap-2">
-                    Generar e Imprimir Reporte PDF Semanal
-                </button>
-            </div>
-
-        </form>
+  <!-- Encabezado -->
+  <div class="flex flex-col md:flex-row justify-between items-start border-b-2 border-slate-900 pb-4 mb-5 gap-4">
+    <div>
+      <h1 class="text-xl font-bold text-slate-900 leading-tight">Listas de verificación para la inspección diaria</h1>
+      <p class="text-sm font-bold text-blue-900 tracking-wide">GRÚA ELÉCTRICA LIUGONG</p>
+      <p class="text-[11px] text-slate-500 mt-1">Coloque el formulario completo en una carpeta accesible.</p>
     </div>
+    <div class="flex items-center gap-3">
+      <span class="bg-blue-900 text-white text-sm font-black px-3 py-1.5 rounded tracking-wider uppercase">Access</span>
+      <div class="text-xs space-y-1">
+        <div class="flex items-center gap-2"><label class="font-bold w-28">Marca:</label><input id="marca" value="LIUGONG" class="border border-slate-300 rounded px-2 py-1 w-52 font-semibold"></div>
+        <div class="flex items-center gap-2"><label class="font-bold w-28">Modelo:</label><input id="modelo" value="CLG2020A-S/E" class="border border-slate-300 rounded px-2 py-1 w-52 font-semibold"></div>
+        <div class="flex items-center gap-2"><label class="font-bold w-28">Número de serie:</label><input id="serie" value="CLG2000ZVPT881792" class="border border-slate-300 rounded px-2 py-1 w-52 font-mono font-semibold"></div>
+      </div>
+    </div>
+  </div>
 
-    <script>
-        const checkItems = [
-            "Puntos del compartimiento superior / motor",
-            "Puntos de la inspección a pie (sin llave)",
-            "Baliza y alarma sonora de retroceso",
-            "Luces de faena y Bluepoint",
-            "Espejos y asiento",
-            "Bocina y botones de control",
-            "Cinturón de seguridad",
-            "Extintor contra incendios",
-            "Mástil y cuadro principal / cableado",
-            "Conexiones de batería y soporte",
-            "Cámara de horquilla",
-            "Estado general de parrilla en mástil",
-            "Estado cargador de batería",
-            "Estado ruedas central y frontales",
-            "Marcha hacia adelante y atrás",
-            "Accionamiento de levante / lateral / frontal",
-            "Estado de uñas de agarre",
-            "Funcionamiento general"
-        ];
+  <!-- Datos generales -->
+  <div class="bg-slate-50 p-4 rounded-lg border border-slate-200 grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs mb-4">
+    <div><label class="block font-bold mb-1">Semana del (fecha de inicio):</label><input type="date" id="semana" class="w-full border border-slate-300 rounded px-2 py-1.5"></div>
+    <div>
+      <label class="block font-bold mb-1">Turno:</label>
+      <div class="flex gap-4 py-1.5 font-bold">
+        <label><input type="radio" name="turno" value="1º" checked> 1º</label>
+        <label><input type="radio" name="turno" value="2º"> 2º</label>
+        <label><input type="radio" name="turno" value="3º"> 3º</label>
+      </div>
+    </div>
+    <div><label class="block font-bold mb-1">Lectura del horómetro (inicio de la semana):</label><input type="number" step="0.1" id="horometro" class="w-full border border-slate-300 rounded px-2 py-1.5 font-mono"></div>
+  </div>
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const today = new Date().toISOString().split('T')[0];
-            document.getElementById('fechaSemana').value = today;
+  <p class="text-[11px] text-slate-600 mb-3 bg-amber-50 border border-amber-300 rounded p-2">
+    Un operador certificado debe completar esta sección al inicio de cada turno de trabajo. Si se encuentra alguna discrepancia, anótela abajo y programe la reparación con un mecánico calificado. Los equipos defectuosos se deben bloquear y señalizar con una etiqueta de fuera de servicio. <b>No operar hasta que se complete la reparación.</b>
+  </p>
 
-            const tbody = document.getElementById('weekly_body');
-            tbody.innerHTML = checkItems.map((item, idx) => {
-                let rowHtml = `<tr class="hover:bg-slate-50"><td class="p-1.5 border-r border-slate-300 font-semibold text-slate-800">${item}</td>`;
-                for(let d=0; d<7; d++) {
-                    rowHtml += `
-                        <td class="p-0.5 border-r border-slate-200 text-center"><input type="checkbox" id="i_${idx}_d${d}_am" class="w-3.5 h-3.5 text-blue-900 rounded cursor-pointer"></td>
-                        <td class="p-0.5 border-r border-slate-300 text-center"><input type="checkbox" id="i_${idx}_d${d}_pm" class="w-3.5 h-3.5 text-blue-900 rounded cursor-pointer"></td>
-                    `;
-                }
-                rowHtml += `<td class="p-1"><input type="text" id="i_${idx}_obs" placeholder="Observación..." class="w-full px-1.5 py-1 text-[11px] border border-transparent focus:border-slate-300 rounded outline-none bg-transparent focus:bg-white"></td></tr>`;
-                return rowHtml;
-            }).join('');
-        });
+  <!-- Tabla principal -->
+  <div class="overflow-x-auto rounded-lg border border-slate-900">
+    <table class="w-full text-xs border-collapse min-w-[900px]">
+      <thead class="bg-slate-800 text-white">
+        <tr>
+          <th class="p-2 text-left w-44">Punto de inspección</th>
+          <th class="p-2 text-left">Criterios (verificación)</th>
+          <th class="p-1 w-16">Lunes</th><th class="p-1 w-16">Martes</th><th class="p-1 w-16">Miércoles</th>
+          <th class="p-1 w-16">Jueves</th><th class="p-1 w-16">Viernes</th><th class="p-1 w-16">Sábado</th><th class="p-1 w-16">Domingo</th>
+          <th class="p-2 text-left w-48">Comentarios</th>
+        </tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
+  </div>
+  <p class="text-[10px] text-slate-500 mt-1">Para cada día elija: <b>OK</b> = conforme · <b>REP</b> = reparación requerida · <b>N/A</b> = no corresponde.</p>
 
-        async function generatePDF() {
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF('l', 'mm', 'a4'); // Formato horizontal (landscape)
+  <!-- Acciones correctivas -->
+  <h2 class="text-sm font-bold mt-6 mb-2">Acciones correctivas / comentarios</h2>
+  <div class="overflow-x-auto rounded-lg border border-slate-900">
+    <table class="w-full text-xs border-collapse min-w-[700px]">
+      <thead class="bg-slate-800 text-white">
+        <tr><th class="p-2 w-12">Día</th><th class="p-2 text-left">Acciones correctivas / comentarios</th><th class="p-2 text-left w-48">Daño</th><th class="p-2 text-left w-40">Fecha en que se completó</th></tr>
+      </thead>
+      <tbody id="acc"></tbody>
+    </table>
+  </div>
 
-            const semana = document.getElementById('fechaSemana').value;
-            const turno = document.querySelector('input[name="turno"]:checked').value;
-            const bodega = document.getElementById('bodega').value;
-            const equipo = document.getElementById('equipo').value;
-            const nroSerie = document.getElementById('nroSerie').value;
-            const licencia = document.querySelector('input[name="licencia"]:checked').value;
-            const operador = document.getElementById('operador').value;
-            const supervisor = document.getElementById('supervisor').value;
+  <!-- Firmas -->
+  <h2 class="text-sm font-bold mt-6 mb-2">Firmas semanales del supervisor y del operador que indican que se realizaron las inspecciones</h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+    <div class="border-2 border-slate-800 rounded-lg p-3 space-y-2">
+      <label class="font-bold block">Firma del operador:</label><input id="firmaOp" placeholder="Firme o escriba aquí" class="w-full border-b border-slate-400 px-1 py-1.5 italic text-blue-950 text-base outline-none">
+      <label class="font-bold block">Nombre del operador:</label><input id="nomOp" placeholder="Escriba el nombre del operador" class="w-full border border-slate-300 rounded px-2 py-1.5">
+    </div>
+    <div class="border-2 border-slate-800 rounded-lg p-3 space-y-2">
+      <label class="font-bold block">Firma del supervisor:</label><input id="firmaSup" placeholder="Firme o escriba aquí" class="w-full border-b border-slate-400 px-1 py-1.5 italic text-blue-950 text-base outline-none">
+      <label class="font-bold block">Nombre del supervisor:</label><input id="nomSup" placeholder="Escriba el nombre del supervisor" class="w-full border border-slate-300 rounded px-2 py-1.5">
+      <label class="font-bold block">Nro. de certificado:</label><input id="cert" class="w-full border border-slate-300 rounded px-2 py-1.5">
+    </div>
+  </div>
 
-            // Franja superior
-            doc.setFillColor(30, 58, 138);
-            doc.rect(14, 10, 269, 3, 'F');
+  <div class="pt-6 flex flex-col sm:flex-row gap-3">
+    <button type="button" onclick="limpiar()" class="sm:w-1/4 bg-slate-200 hover:bg-slate-300 font-bold py-3 rounded-lg uppercase tracking-wider text-xs">Limpiar formulario</button>
+    <button type="button" onclick="generarPDF()" class="sm:w-3/4 bg-blue-900 hover:bg-black text-white font-bold py-3 rounded-lg uppercase tracking-widest text-sm shadow-lg">Finalizar y descargar PDF</button>
+  </div>
+</div>
 
-            doc.setFont("helvetica", "bold");
-            doc.setFontSize(10);
-            doc.setTextColor(15, 23, 42);
-            doc.text("LISTAS DE VERIFICACIÓN PARA LA INSPECCIÓN DIARIA – APILADOR ELÉCTRICO LIUGONG", 14, 17);
+<script>
+const DIAS = ['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'];
+const SECCIONES = [
+  { t: 'Puntos de inspección del lugar de trabajo (si corresponde)', items: [
+    ['Condiciones del suelo','Residuos o escombros, agujeros, desniveles'],
+    ['Riesgo en altura','Estructuras, tuberías de suministros, ventiladores, luces, etc.'],
+    ['Acceso no autorizado','Personas, vehículos, equipos, etc.'],
+    ['Artículos de seguridad','Extintor de incendios, EPP, estaciones de lavado de ojos, kit de primeros auxilios, etc.'] ]},
+  { t: 'Puntos de inspección visual (sin llave)', items: [
+    ['Revisión general','Freno de estacionamiento, pérdida de fluidos en el suelo, daños, etc.'],
+    ['Horquillas / escudo de carga','Torceduras, roturas, pasadores de sujeción, desgaste, incompatibilidad'],
+    ['Mástil, cadena de levantamiento, rodillos','Soldaduras rotas, rajaduras, torceduras, aceite, óxido'],
+    ['Cilindros hidráulicos, mangueras','Pérdidas, daños, burbujas/cortes en manguera'],
+    ['Neumáticos/ruedas – Todo','Tuercas de las ruedas, daños en llantas, flancos, rodadura, presión'],
+    ['Pórtico de seguridad – Todos los lados','Soldaduras rotas, pernos faltantes, áreas dañadas'],
+    ['Placa de capacidad / calcomanías de seguridad','Legibles, adheridas a la unidad'],
+    ['Cinturón de seguridad / sistema de sujeción del operador','Desgastes, daños, funcionamiento correcto; se traba al conectarse'],
+    ['Controles y pedales','Los pedales y controles hidráulicos se mueven sin esfuerzo'],
+    ['Contrapeso','Pernos, daños, rajaduras en caño de escape/radiador'],
+    ['Cilindro de propano','Colocación adecuada, daños, pérdidas, fecha'],
+    ['Indicadores de fluido (todos los que sean accesibles)','Aceite del motor/sistema hidráulico/frenos/transmisión/refrigerante'],
+    ['Batería','Tapones de las celdas cerrados, pérdidas, corrosión, cables'] ]},
+  { t: 'Inspecciones operativas (con llave)', items: [
+    ['Cinturones de seguridad','Cinturones de seguridad puestos antes de todo movimiento'],
+    ['Medidores','Todos los indicadores y las luces de advertencia'],
+    ['Dispositivos de advertencia','Funcionamiento correcto de todas las luces, bocina, alarma de reversa'],
+    ['Frenos de estacionamiento o servicio / pedal de hombre muerto','El freno de estacionamiento se mantiene con el equipo en funcionamiento; el freno de servicio detiene la unidad'],
+    ['Todas las operaciones hidráulicas','No hay pérdidas en todo su rango de movimiento'],
+    ['Dirección','No hay ruidos inusuales, exceso de juego libre'] ]}
+];
 
-            doc.setFontSize(7);
-            doc.setFont("helvetica", "normal");
-            doc.setTextColor(100, 116, 139);
-            doc.text("POE: 1 / ed: 01  |  Fecha de edición: 15/06/2026  |  Fecha de revisión: 01/07/2026", 14, 21);
+const opts = '<option value=""></option><option value="OK">OK</option><option value="REP">REP</option><option value="N/A">N/A</option>';
 
-            // Datos generales en tabla limpia
-            doc.autoTable({
-                startY: 23,
-                theme: 'plain',
-                styles: { fontSize: 7, cellPadding: 1, textColor: [30, 41, 59] },
-                columnStyles: { 0: { fontStyle: 'bold' }, 2: { fontStyle: 'bold' }, 4: { fontStyle: 'bold' } },
-                body: [
-                    [`Semana del: ${semana}`, `Turno: ${turno}`, `Bodega: ${bodega}`, `Equipo: ${equipo}`, `N° Serie: ${nroSerie}`, `Licencia: ${licencia}`]
-                ]
-            });
+function pintar(sel){ sel.className = 'st ' + ({'OK':'ok','REP':'rep','N/A':'na'}[sel.value] || ''); }
 
-            const days = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
-            const headRow1 = [{ content: 'ÍTEM DE INSPECCIÓN DIARIA', rowSpan: 2, styles: { halign: 'left', valign: 'middle' } }];
-            const headRow2 = [];
+function construir(){
+  let h = '';
+  SECCIONES.forEach((s, si) => {
+    h += `<tr class="bg-slate-900 text-white"><td colspan="10" class="px-2 py-1.5 font-bold">${s.t}</td></tr>`;
+    s.items.forEach((it, ii) => {
+      h += `<tr class="border-b border-slate-300 hover:bg-slate-50"><td class="p-2 font-semibold border-r border-slate-300">${it[0]}</td><td class="p-2 text-slate-600 border-r border-slate-300">${it[1]}</td>`;
+      DIAS.forEach((_, d) => h += `<td class="p-1 border-r border-slate-200"><select id="c_${si}_${ii}_${d}" class="st" onchange="pintar(this)">${opts}</select></td>`);
+      h += `<td class="p-1"><input id="c_${si}_${ii}_obs" class="w-full px-2 py-1 border border-transparent focus:border-slate-300 rounded outline-none" placeholder="Comentario..."></td></tr>`;
+    });
+  });
+  h += `<tr class="bg-slate-300 font-bold"><td colspan="2" class="p-2 text-right">Iniciales del operador del día</td>`;
+  DIAS.forEach((_, d) => h += `<td class="p-1"><input id="ini_${d}" maxlength="4" class="w-full text-center border border-slate-400 rounded py-1 uppercase"></td>`);
+  h += `<td></td></tr>`;
+  document.getElementById('tbody').innerHTML = h;
 
-            days.forEach(day => {
-                headRow1.push({ content: day, colSpan: 2, styles: { halign: 'center', fillColor: [30, 41, 59] } });
-                headRow2.push({ content: 'AM', styles: { halign: 'center', fillColor: [51, 65, 85] } });
-                headRow2.push({ content: 'PM', styles: { halign: 'center', fillColor: [51, 65, 85] } });
-            });
-            headRow1.push({ content: 'Observaciones', rowSpan: 2, styles: { halign: 'center', valign: 'middle' } });
+  document.getElementById('acc').innerHTML = DIAS.map((dia, i) =>
+    `<tr class="border-b border-slate-300"><td class="p-2 font-bold text-center bg-slate-100">${dia}</td>
+     <td class="p-1"><input id="a_${i}" class="w-full px-2 py-1 border border-slate-200 rounded"></td>
+     <td class="p-1"><input id="dn_${i}" class="w-full px-2 py-1 border border-slate-200 rounded"></td>
+     <td class="p-1"><input type="date" id="fc_${i}" class="w-full px-2 py-1 border border-slate-200 rounded"></td></tr>`).join('');
+}
 
-            const tableRows = checkItems.map((item, idx) => {
-                const row = [item];
-                for(let d=0; d<7; d++) {
-                    row.push(document.getElementById(`i_${idx}_d${d}_am`)?.checked ? '✓' : '');
-                    row.push(document.getElementById(`i_${idx}_d${d}_pm`)?.checked ? '✓' : '');
-                }
-                row.push(document.getElementById(`i_${idx}_obs`)?.value || '');
-                return row;
-            });
+function limpiar(){
+  if(!confirm('¿Borrar todos los datos del formulario?')) return;
+  document.querySelectorAll('input[type=text],input[type=date],input[type=number],input:not([type]),select').forEach(e => { if(['marca','modelo','serie'].includes(e.id)) return; e.value=''; if(e.tagName==='SELECT') pintar(e); });
+}
 
-            doc.autoTable({
-                startY: doc.lastAutoTable.finalY + 2,
-                theme: 'grid',
-                head: [headRow1, headRow2],
-                body: tableRows,
-                styles: { fontSize: 6, cellPadding: 0.9, textColor: [15, 23, 42] },
-                headStyles: { fillColor: [30, 41, 59], textColor: [255, 255, 255] }
-            });
+function generarPDF(){
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF('l','mm','a4');
+  const v = id => document.getElementById(id).value || '';
+  const turno = document.querySelector('input[name="turno"]:checked').value;
 
-            doc.autoTable({
-                startY: doc.lastAutoTable.finalY + 4,
-                theme: 'grid',
-                styles: { fontSize: 7, cellPadding: 5, halign: 'center' },
-                headStyles: { fillColor: [241, 245, 249], textColor: [30, 41, 59] },
-                head: [['Firma Operador de Grúa', 'V°B° Supervisor / Seguridad']],
-                body: [[
-                    `\n\n___________________________________\n${operador}\nFirma Operador`,
-                    `\n\n___________________________________\n${supervisor}\nV°B° Supervisor`
-                ]]
-            });
+  doc.setFont('helvetica','bold'); doc.setFontSize(13); doc.setTextColor(15,23,42);
+  doc.text('Lista de verificación para la inspección diaria – GRÚA ELÉCTRICA LIUGONG', 10, 12);
+  doc.setFontSize(8); doc.setFont('helvetica','normal');
+  doc.text(`Marca: ${v('marca')}    Modelo: ${v('modelo')}    N° de serie: ${v('serie')}    Semana del: ${v('semana')}    Turno: ${turno}    Horómetro: ${v('horometro')}`, 10, 18);
 
-            doc.save(`Checklist_Semanal_Liugong_${nroSerie}.pdf`);
-        }
-    </script>
+  const body = [];
+  SECCIONES.forEach((s, si) => {
+    body.push([{ content: s.t, colSpan: 10, styles:{ fillColor:[15,23,42], textColor:255, fontStyle:'bold' } }]);
+    s.items.forEach((it, ii) => {
+      const row = [it[0], it[1]];
+      DIAS.forEach((_, d) => row.push(v(`c_${si}_${ii}_${d}`)));
+      row.push(v(`c_${si}_${ii}_obs`));
+      body.push(row);
+    });
+  });
+  const ini = ['', 'Iniciales del operador del día'];
+  DIAS.forEach((_, d) => ini.push(v('ini_'+d)));
+  ini.push('');
+  body.push(ini.map((c,i) => ({ content:c, styles:{ fillColor:[203,213,225], fontStyle:'bold', halign:i===1?'right':'center' } })));
+
+  doc.autoTable({
+    startY: 22, theme: 'grid',
+    head: [['Punto de inspección','Criterios (verificación)', ...DIAS, 'Comentarios']],
+    body,
+    headStyles: { fillColor:[30,41,59], fontSize:7 },
+    styles: { fontSize:6.5, cellPadding:1 },
+    columnStyles: { 0:{cellWidth:45,fontStyle:'bold'}, 1:{cellWidth:75}, 2:{cellWidth:10,halign:'center'},3:{cellWidth:10,halign:'center'},4:{cellWidth:10,halign:'center'},5:{cellWidth:10,halign:'center'},6:{cellWidth:10,halign:'center'},7:{cellWidth:10,halign:'center'},8:{cellWidth:10,halign:'center'}, 9:{cellWidth:'auto'} },
+    didParseCell: d => {
+      if (d.section==='body' && d.column.index>=2 && d.column.index<=8) {
+        if (d.cell.raw==='OK') d.cell.styles.textColor=[6,95,70];
+        if (d.cell.raw==='REP') { d.cell.styles.textColor=[159,18,57]; d.cell.styles.fontStyle='bold'; }
+      }
+    }
+  });
+
+  doc.addPage();
+  const acc = DIAS.map((dia,i) => [dia, v('a_'+i), v('dn_'+i), v('fc_'+i)]);
+  doc.autoTable({
+    startY: 14, theme:'grid',
+    head: [['Día','Acciones correctivas / comentarios','Daño','Fecha en que se completó']],
+    body: acc, headStyles:{ fillColor:[30,41,59] }, styles:{ fontSize:8, cellPadding:2 },
+    columnStyles:{ 0:{cellWidth:15,fontStyle:'bold'}, 2:{cellWidth:60}, 3:{cellWidth:40} }
+  });
+
+  let y = doc.lastAutoTable.finalY + 20;
+  doc.setDrawColor(30,58,138);
+  const firma = (x, firmaTxt, nombre, rol) => {
+    doc.line(x, y, x+80, y);
+    doc.setFont('times','italic'); doc.setFontSize(14); doc.setTextColor(30,58,138); doc.text(firmaTxt, x+2, y-2);
+    doc.setFont('helvetica','bold'); doc.setFontSize(8); doc.setTextColor(15,23,42);
+    doc.text(`Firma del ${rol}`, x, y+4); doc.text(`Nombre del ${rol}: ${nombre}`, x, y+9);
+  };
+  firma(20, v('firmaOp'), v('nomOp'), 'operador');
+  firma(130, v('firmaSup'), v('nomSup'), 'supervisor');
+  doc.text(`Nro. de certificado: ${v('cert')}`, 130, y+14);
+
+  doc.save(`INSPECCION_GRUA_LIUGONG_${(v('semana')||'sin_fecha').replace(/[^a-zA-Z0-9]/g,'_')}.pdf`);
+}
+
+construir();
+document.getElementById('semana').value = new Date().toISOString().split('T')[0];
+</script>
 </body>
 </html>
