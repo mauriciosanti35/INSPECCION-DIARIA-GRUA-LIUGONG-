@@ -477,6 +477,7 @@
             let currentY = doc.lastAutoTable.finalY + 4;
             const checkChar = (checked) => checked ? '✓' : '';
 
+            // SECCIÓN 1 PDF
             const rowsSec1 = itemsSec1.map((item, idx) => {
                 const id = `s1_${idx}`;
                 return [
@@ -524,6 +525,7 @@
 
             currentY = doc.lastAutoTable.finalY + 4;
 
+            // SECCIÓN 2 PDF
             const rowsSec2 = itemsSec2.map((item, idx) => {
                 const id = `s2_${idx}`;
                 return [
@@ -568,6 +570,7 @@
 
             currentY = doc.lastAutoTable.finalY + 4;
 
+            // SECCIÓN 3 PDF
             const rowsSec3 = itemsSec3.map((item, idx) => {
                 const id = `s3_${idx}`;
                 return [
@@ -620,6 +623,7 @@
                 currentY = 20;
             }
 
+            // SECCIÓN DE FIRMAS EN PDF
             doc.autoTable({
                 startY: currentY,
                 theme: 'grid',
