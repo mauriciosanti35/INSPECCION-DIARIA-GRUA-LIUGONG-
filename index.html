@@ -19,7 +19,7 @@
 <body class="bg-slate-100 min-h-screen py-6 px-2 sm:px-4 text-slate-800">
 <div class="max-w-6xl mx-auto bg-white rounded-xl shadow-xl border border-slate-200 p-4 sm:p-8">
 
-  <!-- Encabezado con logotipo de Access y datos específicos del equipo -->
+  <!-- Encabezado con datos integrados en los campos correspondientes -->
   <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center border-b-2 border-slate-900 pb-4 mb-5 gap-4">
     <div>
       <h1 class="text-xl font-bold text-slate-900 leading-tight">Listas de verificación para la inspección diaria</h1>
@@ -33,12 +33,12 @@
         <span class="text-2xl font-black tracking-tighter" style="color: #1e3a8a;">A</span><span class="text-2xl font-bold tracking-tight" style="color: #f97316;">ccess</span>
       </div>
 
-      <!-- Bloque con la información del equipo solicitada -->
+      <!-- Bloque de datos actualizado con los valores de la grúa -->
       <div class="text-xs space-y-1 border border-slate-300 p-2.5 rounded bg-slate-50">
-        <div class="flex items-center gap-2"><label class="font-bold w-32 text-right">Marca:</label><input id="marca" value="LIUGONG" class="border border-slate-300 rounded px-2 py-0.5 w-44 font-semibold bg-white"></div>
-        <div class="flex items-center gap-2"><label class="font-bold w-32 text-right">Modelo:</label><input id="modelo" value="CLG2020A-S/E" class="border border-slate-300 rounded px-2 py-0.5 w-44 font-semibold bg-white"></div>
-        <div class="flex items-center gap-2"><label class="font-bold w-32 text-right">Número de serie:</label><input id="serie" value="CLG2000ZVPT881792" class="border border-slate-300 rounded px-2 py-0.5 w-44 font-mono font-semibold bg-white"></div>
-        <div class="flex items-center gap-2"><label class="font-bold w-32 text-right">Motor:</label><input id="motor" value="ELECTRICO" class="border border-slate-300 rounded px-2 py-0.5 w-44 font-semibold bg-white"></div>
+        <div class="flex items-center gap-2"><label class="font-bold w-28 text-right">Marca:</label><input id="marca" value="LIUGONG" class="border border-slate-300 rounded px-2 py-0.5 w-48 font-semibold bg-white"></div>
+        <div class="flex items-center gap-2"><label class="font-bold w-28 text-right">Modelo:</label><input id="modelo" value="CLG2020A-S/E" class="border border-slate-300 rounded px-2 py-0.5 w-48 font-semibold bg-white"></div>
+        <div class="flex items-center gap-2"><label class="font-bold w-28 text-right">Nro. de serie:</label><input id="serie" value="CLG2000ZVPT881792" class="border border-slate-300 rounded px-2 py-0.5 w-48 font-mono font-semibold bg-white"></div>
+        <div class="flex items-center gap-2"><label class="font-bold w-28 text-right">Nro. de vehículo:</label><input id="vehiculo" placeholder="N° Vehículo" class="border border-slate-300 rounded px-2 py-0.5 w-48 font-semibold bg-white"></div>
       </div>
     </div>
   </div>
@@ -206,7 +206,7 @@ function construir(){
 function limpiar(){
   if(!confirm('¿Desea borrar todos los datos ingresados en el formulario?')) return;
   document.querySelectorAll('input[type=text],input[type=date],input[type=number],input:not([type]),select').forEach(e => { 
-    if(['marca','modelo','serie','motor'].includes(e.id)) return;
+    if(['marca','modelo','serie'].includes(e.id)) return;
     e.value=''; 
     if(e.tagName==='SELECT') pintar(e); 
   });
@@ -225,7 +225,7 @@ function generarPDF(){
   
   doc.setFontSize(8); 
   doc.setFont('helvetica','normal');
-  doc.text(`Marca: ${v('marca')}    Modelo: ${v('modelo')}    N° de serie: ${v('serie')}    Motor: ${v('motor')}    Semana del: ${v('semana')}    Turno: ${turno}    Horómetro: ${v('horometro')}`, 10, 18);
+  doc.text(`Marca: ${v('marca')}    Modelo: ${v('modelo')}    N° de serie: ${v('serie')}    N° Vehículo: ${v('vehiculo')}    Semana del: ${v('semana')}    Turno: ${turno}    Horómetro: ${v('horometro')}`, 10, 18);
 
   const body = [];
   SECCIONES.forEach((s, si) => {
